@@ -1,0 +1,16 @@
+{% extends 'blogapp/home.html' %}
+{% block title %}
+login
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'accounts:login' %}" class="form-box">
+    <h3>Login </h3>
+    {% csrf_token %}
+    {{form.as_p}}
+    {% if request.GET.next %}
+    <input type="hidden" value="{{request.GET.next}}" name="next">
+    {% endif %}
+    <button type="submit" value="Login" class="form-btn">Login</button>
+</form>
+{% endblock %}

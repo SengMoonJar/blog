@@ -1,0 +1,15 @@
+{% extends 'blogapp/home.html' %}
+{% block title %}article_detail{% endblock %}
+{% block content %}
+<div class="detail">
+    {% if article.image %}
+    <img src="{{article.image.url}}" name="{{article.name}}"/>
+    {% endif %}
+    <p class="detail-text">
+        <h3>{{article.title}}</h3>
+        <div> {{article.body}}</div>
+        <h4> {{article.author }} <span> {{article.date }}</span> </h4>
+    </p>
+    
+</div>
+{% endblock %}

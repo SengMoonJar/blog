@@ -1,0 +1,18 @@
+{% extends 'blogapp/home.html' %}
+{% block title %}
+Article List
+{% endblock %}
+
+{% block content %}
+<h3>Article List</h3>
+    <div class="articles">
+        {% for article in articles %}
+        <li class="article"> 
+            <h2 class="article-title"><a href="{% url 'article:article_detail' slug=article.slug %}">{{article.title }}</a></h2>
+            <p> {{article.body }}</p>
+            <span> {{article.author}}</span>
+        </li>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

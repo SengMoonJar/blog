@@ -1,0 +1,63 @@
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% block title %} Home {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <nav>
+                <a href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" class="logo"></a>
+            </nav>
+           <ul class="btn-box">
+            {% if user.is_authenticated %}
+            <li>
+                <form method="POST" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn" >Logout</button>
+                </form>
+           
+            </li>
+            <li><a href="{% url 'article:create_article' %}" class="highlight">Add new Article</a></li>
+         {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+        </div>
+        {% block content %}
+        <div class="container">
+            home
+        </div>
+        {% endblock %}
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <h3>About Us</h3>
+                    <p>Your blog description or tagline goes here. Share your thoughts, stories, or articles!</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'article:create_article' %}">Write Article</a></li>
+                        <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                        <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p>Email: <a href="mailto:revelon@2024.com">revelon@2024.com</a></p>
+                    <p>Phone: +123 456 7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy;2024 REVELON. All Rights Reserved.</p>
+            </div>
+        </footer>
+        
+    </div>
+</body>
+</html>
